@@ -8,6 +8,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1", routes);
 
+app.get("/", (req,res)=>{
+  res.send("Welcome to TBT API!");
+})
+
 app.get("/testHerokuRoute",async(req,res)=>{
   try{
     const results = await db.promise().query('select * from heroku');
