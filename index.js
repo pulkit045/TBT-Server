@@ -1,22 +1,24 @@
 import express from "express";
 const app = express();
-const port = 5000 || process.env.PORT;
-//const hello = require('./src/index');
-
-import routes from "./src/index"
+const PORT = 5000 || process.env.PORT;
+import routes from "./src/index.js";
+import db from "./database.js";
 
 app.use(express.json());
-
-app.use(express.urlencoded({
-    extended:true
-}));
-
-
-
+app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1", routes);
- 
 
-app.listen(port, () => {
-  console.log(`PORT IS RUNING YAYAY 🚀 ${port}`);
+app.get("/testHerokuRoute",async(req,res)=>{
+  try{
+    const results = await db.promise().query('select * from heroku');
+    res.status(200).send(results[0]);
+  }
+  catch{
+    res.send("OOPS lets check!");
+  }
+  
 });
- 
+
+app.listen(PORT, () => {
+  console.log(`PORT IS RUNING YAYAY 🚀 ${PORT}`);
+});
