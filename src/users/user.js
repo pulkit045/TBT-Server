@@ -41,7 +41,7 @@ export const login = async (req, res) => {
         res.status(200).json({accessToken: token});
       } 
       catch (err) {
-        return res.statu(422).json({ error: err });
+        return res.status(422).json({ error: err });
       }
     }
     else{
