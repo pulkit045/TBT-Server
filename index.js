@@ -1,6 +1,6 @@
 import express from "express";
 const app = express();
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 import routes from "./src/index.js";
 import db from "./database.js";
 
@@ -23,6 +23,10 @@ app.get("/testHerokuRoute",async(req,res)=>{
   
 });
 
-app.listen(PORT, () => {
-  console.log(`PORT IS RUNING YAYAY 🚀 ${PORT}`);
+app.get("/testHerokuRoute2", (req,res)=>{
+  res.json("{username: Pulkit, age: 20}");
+})
+
+app.listen(port, () => {
+  console.log(`PORT IS RUNING YAYAY 🚀 ${port}`);
 });
